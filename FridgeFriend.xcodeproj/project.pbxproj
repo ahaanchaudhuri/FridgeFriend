@@ -1,0 +1,574 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		347F1AB52D04DC1100DF995A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 347F1A962D04DC0F00DF995A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 347F1A9D2D04DC0F00DF995A;
+			remoteInfo = FridgeFriend;
+		};
+		347F1ABF2D04DC1100DF995A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 347F1A962D04DC0F00DF995A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 347F1A9D2D04DC0F00DF995A;
+			remoteInfo = FridgeFriend;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		347F1A9E2D04DC0F00DF995A /* FridgeFriend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FridgeFriend.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		347F1AB42D04DC1100DF995A /* FridgeFriendTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FridgeFriendTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		347F1ABE2D04DC1100DF995A /* FridgeFriendUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FridgeFriendUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		347F1AC62D04DC1100DF995A /* Exceptions for "FridgeFriend" folder in "FridgeFriend" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 347F1A9D2D04DC0F00DF995A /* FridgeFriend */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		347F1AA02D04DC0F00DF995A /* FridgeFriend */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				347F1AC62D04DC1100DF995A /* Exceptions for "FridgeFriend" folder in "FridgeFriend" target */,
+			);
+			path = FridgeFriend;
+			sourceTree = "<group>";
+		};
+		347F1AB72D04DC1100DF995A /* FridgeFriendTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = FridgeFriendTests;
+			sourceTree = "<group>";
+		};
+		347F1AC12D04DC1100DF995A /* FridgeFriendUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = FridgeFriendUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		347F1A9B2D04DC0F00DF995A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		347F1AB12D04DC1100DF995A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		347F1ABB2D04DC1100DF995A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		347F1A952D04DC0F00DF995A = {
+			isa = PBXGroup;
+			children = (
+				347F1AA02D04DC0F00DF995A /* FridgeFriend */,
+				347F1AB72D04DC1100DF995A /* FridgeFriendTests */,
+				347F1AC12D04DC1100DF995A /* FridgeFriendUITests */,
+				347F1A9F2D04DC0F00DF995A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		347F1A9F2D04DC0F00DF995A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				347F1A9E2D04DC0F00DF995A /* FridgeFriend.app */,
+				347F1AB42D04DC1100DF995A /* FridgeFriendTests.xctest */,
+				347F1ABE2D04DC1100DF995A /* FridgeFriendUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		347F1A9D2D04DC0F00DF995A /* FridgeFriend */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 347F1AC72D04DC1100DF995A /* Build configuration list for PBXNativeTarget "FridgeFriend" */;
+			buildPhases = (
+				347F1A9A2D04DC0F00DF995A /* Sources */,
+				347F1A9B2D04DC0F00DF995A /* Frameworks */,
+				347F1A9C2D04DC0F00DF995A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				347F1AA02D04DC0F00DF995A /* FridgeFriend */,
+			);
+			name = FridgeFriend;
+			packageProductDependencies = (
+			);
+			productName = FridgeFriend;
+			productReference = 347F1A9E2D04DC0F00DF995A /* FridgeFriend.app */;
+			productType = "com.apple.product-type.application";
+		};
+		347F1AB32D04DC1100DF995A /* FridgeFriendTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 347F1ACC2D04DC1100DF995A /* Build configuration list for PBXNativeTarget "FridgeFriendTests" */;
+			buildPhases = (
+				347F1AB02D04DC1100DF995A /* Sources */,
+				347F1AB12D04DC1100DF995A /* Frameworks */,
+				347F1AB22D04DC1100DF995A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				347F1AB62D04DC1100DF995A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				347F1AB72D04DC1100DF995A /* FridgeFriendTests */,
+			);
+			name = FridgeFriendTests;
+			packageProductDependencies = (
+			);
+			productName = FridgeFriendTests;
+			productReference = 347F1AB42D04DC1100DF995A /* FridgeFriendTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		347F1ABD2D04DC1100DF995A /* FridgeFriendUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 347F1ACF2D04DC1100DF995A /* Build configuration list for PBXNativeTarget "FridgeFriendUITests" */;
+			buildPhases = (
+				347F1ABA2D04DC1100DF995A /* Sources */,
+				347F1ABB2D04DC1100DF995A /* Frameworks */,
+				347F1ABC2D04DC1100DF995A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				347F1AC02D04DC1100DF995A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				347F1AC12D04DC1100DF995A /* FridgeFriendUITests */,
+			);
+			name = FridgeFriendUITests;
+			packageProductDependencies = (
+			);
+			productName = FridgeFriendUITests;
+			productReference = 347F1ABE2D04DC1100DF995A /* FridgeFriendUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		347F1A962D04DC0F00DF995A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					347F1A9D2D04DC0F00DF995A = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					347F1AB32D04DC1100DF995A = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 347F1A9D2D04DC0F00DF995A;
+					};
+					347F1ABD2D04DC1100DF995A = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 347F1A9D2D04DC0F00DF995A;
+					};
+				};
+			};
+			buildConfigurationList = 347F1A992D04DC0F00DF995A /* Build configuration list for PBXProject "FridgeFriend" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 347F1A952D04DC0F00DF995A;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 347F1A9F2D04DC0F00DF995A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				347F1A9D2D04DC0F00DF995A /* FridgeFriend */,
+				347F1AB32D04DC1100DF995A /* FridgeFriendTests */,
+				347F1ABD2D04DC1100DF995A /* FridgeFriendUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		347F1A9C2D04DC0F00DF995A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		347F1AB22D04DC1100DF995A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		347F1ABC2D04DC1100DF995A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		347F1A9A2D04DC0F00DF995A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		347F1AB02D04DC1100DF995A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		347F1ABA2D04DC1100DF995A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		347F1AB62D04DC1100DF995A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 347F1A9D2D04DC0F00DF995A /* FridgeFriend */;
+			targetProxy = 347F1AB52D04DC1100DF995A /* PBXContainerItemProxy */;
+		};
+		347F1AC02D04DC1100DF995A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 347F1A9D2D04DC0F00DF995A /* FridgeFriend */;
+			targetProxy = 347F1ABF2D04DC1100DF995A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		347F1AC82D04DC1100DF995A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T5F9J4HRPQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FridgeFriend/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ahaan.FridgeFriend;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		347F1AC92D04DC1100DF995A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T5F9J4HRPQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FridgeFriend/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ahaan.FridgeFriend;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		347F1ACA2D04DC1100DF995A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		347F1ACB2D04DC1100DF995A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		347F1ACD2D04DC1100DF995A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T5F9J4HRPQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ahaan.FridgeFriendTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FridgeFriend.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FridgeFriend";
+			};
+			name = Debug;
+		};
+		347F1ACE2D04DC1100DF995A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T5F9J4HRPQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ahaan.FridgeFriendTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FridgeFriend.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FridgeFriend";
+			};
+			name = Release;
+		};
+		347F1AD02D04DC1100DF995A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T5F9J4HRPQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ahaan.FridgeFriendUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FridgeFriend;
+			};
+			name = Debug;
+		};
+		347F1AD12D04DC1100DF995A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T5F9J4HRPQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ahaan.FridgeFriendUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FridgeFriend;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		347F1A992D04DC0F00DF995A /* Build configuration list for PBXProject "FridgeFriend" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				347F1ACA2D04DC1100DF995A /* Debug */,
+				347F1ACB2D04DC1100DF995A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		347F1AC72D04DC1100DF995A /* Build configuration list for PBXNativeTarget "FridgeFriend" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				347F1AC82D04DC1100DF995A /* Debug */,
+				347F1AC92D04DC1100DF995A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		347F1ACC2D04DC1100DF995A /* Build configuration list for PBXNativeTarget "FridgeFriendTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				347F1ACD2D04DC1100DF995A /* Debug */,
+				347F1ACE2D04DC1100DF995A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		347F1ACF2D04DC1100DF995A /* Build configuration list for PBXNativeTarget "FridgeFriendUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				347F1AD02D04DC1100DF995A /* Debug */,
+				347F1AD12D04DC1100DF995A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 347F1A962D04DC0F00DF995A /* Project object */;
+}
