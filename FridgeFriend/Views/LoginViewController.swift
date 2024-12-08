@@ -2,18 +2,19 @@
 //  LoginViewController.swift
 //  FridgeFriend
 //
-//  Created by Ahaan Chaudhuri on 12/7/24.
+//  Created by [Your Name] on [Date].
 //
 
 import UIKit
 
 class LoginViewController: UIViewController {
 
-    // UI Components
-    private let usernameTextField: UITextField = {
+    // MARK: - Properties
+    private let emailTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Username"
+        textField.placeholder = "Enter your email"
         textField.borderStyle = .roundedRect
+        textField.keyboardType = .emailAddress
         textField.autocapitalizationType = .none
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
@@ -21,7 +22,7 @@ class LoginViewController: UIViewController {
 
     private let passwordTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Password"
+        textField.placeholder = "Enter your password"
         textField.borderStyle = .roundedRect
         textField.isSecureTextEntry = true
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -34,86 +35,97 @@ class LoginViewController: UIViewController {
         button.backgroundColor = .systemBlue
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 8
+        button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
-    private let signUpButton: UIButton = {
+    private let goToRegisterButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Sign Up", for: .normal)
+        button.setTitle("Don't have an account? Register", for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
 
+    // MARK: - Setup Methods
     private func setupUI() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .white
 
-        // Add Subviews
-        view.addSubview(usernameTextField)
+        // Add subviews
+        view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
         view.addSubview(loginButton)
-        view.addSubview(signUpButton)
+        view.addSubview(goToRegisterButton)
 
-        // Add Targets
-        loginButton.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
-        signUpButton.addTarget(self, action: #selector(signUpTapped), for: .touchUpInside)
-
-        // Set Constraints
-        setConstraints()
-    }
-
-    private func setConstraints() {
+        // Set constraints
         NSLayoutConstraint.activate([
-            usernameTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
-            usernameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            usernameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            // Email TextField
+            emailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emailTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+            emailTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+            emailTextField.heightAnchor.constraint(equalToConstant: 50),
 
-            passwordTextField.topAnchor.constraint(equalTo: usernameTextField.bottomAnchor, constant: 16),
-            passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            // Password TextField
+            passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
+            passwordTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 50),
 
-            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 32),
-            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            // Login Button
+            loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 30),
+            loginButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
 
-            signUpButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 16),
-            signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            // Go To Register Button
+            goToRegisterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            goToRegisterButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 20)
         ])
+
+        // Add targets to buttons
+        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        goToRegisterButton.addTarget(self, action: #selector(goToRegisterButtonTapped), for: .touchUpInside)
     }
 
-    // Actions
-    @objc private func loginTapped() {
-        guard let username = usernameTextField.text, !username.isEmpty,
+    // MARK: - Actions
+    @objc private func loginButtonTapped() {
+        guard let email = emailTextField.text, !email.isEmpty,
               let password = passwordTextField.text, !password.isEmpty else {
-            showAlert(message: "Please enter both username and password.")
+            showAlert(message: "Please enter both email and password.")
             return
         }
 
-        // Placeholder for actual login logic
-        if username == "test" && password == "password" {
-            print("Login successful")
-            // Navigate to HomeViewController
-            let homeVC = HomeViewController()
-            let navController = UINavigationController(rootViewController: homeVC)
-            navController.modalPresentationStyle = .fullScreen
-            present(navController, animated: true, completion: nil)
-        } else {
-            showAlert(message: "Invalid username or password.")
+        // Call Firebase login through the manager
+        LoginFirebaseManager.loginUser(email: email, password: password) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success:
+                self.navigateToHomeScreen()
+            case .failure(let error):
+                self.showAlert(message: error.localizedDescription)
+            }
         }
     }
 
-    @objc private func signUpTapped() {
-        print("Sign Up tapped")
-        // Navigate to RegisterViewController
-        let registerVC = RegisterViewController()
-        navigationController?.pushViewController(registerVC, animated: true)
+    @objc private func goToRegisterButtonTapped() {
+        // Navigate to the RegistrationViewController
+        let registrationVC = RegistrationViewController()
+        navigationController?.pushViewController(registrationVC, animated: true)
     }
+
+    private func navigateToHomeScreen() {
+        print("Navigating to Home Screen...")
+        let homeVC = HomeViewController()
+        navigationController?.pushViewController(homeVC, animated: true)
+    }
+
 
     private func showAlert(message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
