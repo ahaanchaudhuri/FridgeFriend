@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    var currentUser:FirebaseAuth.User?
+    var currentFridge: Fridge!
+    
     // UI Components
     private let nameTextField: UITextField = {
         let textField = UITextField()
@@ -113,8 +118,40 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         let name = nameTextField.text ?? ""
         let category = categoryTextField.text ?? ""
         let dateAdded = datePicker.date
+        
+        let newItem : Item = Item(name: name, category: category, photo: "", dateAdded: dateAdded, memberName: ((self.currentUser?.email)!))
+        
+        Task {
+            await addItemToFride(item: newItem)
+        }
+
 
         print("Item saved: \(name), \(category), \(dateAdded)")
         navigationController?.popViewController(animated: true)
+    }
+    
+    
+    func addItemToFride(item: Item) async {
+        let database = Firestore.firestore()
+        
+        let itemData: [String: Any] = [
+            "name": item.name,
+            "category": item.category,
+            "photo": item.photo,
+            "dateAdded": Timestamp(date: item.dateAdded),
+            "memberName": item.memberName
+        ]
+        
+        let fridgesRef = database.collection("users")
+            .document((self.currentUser?.email)!).collection("fridges")
+            .document((self.currentFridge?.id)!)
+        
+        do {
+            let querySnapshot = try await fridgesRef.updateData([
+                "items": FieldValue.arrayUnion([itemData])
+              ])
+        } catch {
+            print("Error adding item to fridge: \(error.localizedDescription)")
+        }
     }
 }

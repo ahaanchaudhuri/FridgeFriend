@@ -119,9 +119,6 @@ class ViewController: UIViewController {
         } catch {
             print("Error fetching fridges: \(error.localizedDescription)")
         }
-        
-
-        
     }
 
     
@@ -146,11 +143,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let fridgeName = fridgesList[indexPath.row].name
-        print("Selected fridge: \(fridgeName)")
         
-        Task { // Start an asynchronous task
-            await getAllFridges()
-        }
+        let v = FridgeViewController()
+        v.fridge = fridgesList[indexPath.row]
+        v.currentUser = self.currentUser
+        
+        navigationController?.pushViewController(v, animated: true)
     }
 }
 
