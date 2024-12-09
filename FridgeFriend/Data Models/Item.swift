@@ -14,4 +14,12 @@ struct Item: Codable {
     let photo: String // URL or Base64 string for the item's photo
     let dateAdded: Date // The date the item was added
     let memberName: String // Name of the member who added the item
+    
+    init(name: String, category: String, photo: String, dateAdded: Date, memberName: String) {
+        self.name = name
+        self.category = category
+        self.photo = photo
+        self.dateAdded = dateAdded
+        self.memberName = memberName
+    }
 }

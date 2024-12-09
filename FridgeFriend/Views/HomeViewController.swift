@@ -27,7 +27,7 @@ class HomeViewController: UIViewController {
     }()
 
     // Data Models
-    private var currentUser: User = User(username: "exampleUser", password: "password123", friends: [], fridges: [])
+    private var currentUser: User = User(uid: "password123", username: "exampleUser", friends: [], fridges: [])
     private var displayedFridges: [Fridge] {
         return currentUser.fridges
     }

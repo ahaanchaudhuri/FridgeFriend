@@ -14,16 +14,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
-        // Create the main window
-        let window = UIWindow(windowScene: windowScene)
-
-        // Set the initial view controller
-        let loginVC = LoginViewController()
-        let navigationController = UINavigationController(rootViewController: loginVC)
-
-        window.rootViewController = navigationController
-        self.window = window
-        window.makeKeyAndVisible()
+//        // Create the main window
+//        let window = UIWindow(windowScene: windowScene)
+//
+//        // Set the initial view controller
+//        let loginVC = LoginViewController()
+//        let navigationController = UINavigationController(rootViewController: loginVC)
+//
+//        window.rootViewController = navigationController
+//        self.window = window
+//        window.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
