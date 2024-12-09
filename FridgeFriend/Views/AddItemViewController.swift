@@ -122,16 +122,17 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         let newItem : Item = Item(name: name, category: category, photo: "", dateAdded: dateAdded, memberName: ((self.currentUser?.email)!))
         
         Task {
-            await addItemToFride(item: newItem)
+            await addItemToFridge(item: newItem)
         }
 
 
         print("Item saved: \(name), \(category), \(dateAdded)")
         navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     
-    func addItemToFride(item: Item) async {
+    func addItemToFridge(item: Item) async {
         let database = Firestore.firestore()
         
         let itemData: [String: Any] = [
@@ -147,9 +148,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
             .document((self.currentFridge?.id)!)
         
         do {
-            let querySnapshot = try await fridgesRef.updateData([
-                "items": FieldValue.arrayUnion([itemData])
-              ])
+            try await fridgesRef.updateData(["items": FieldValue.arrayUnion([itemData])])
         } catch {
             print("Error adding item to fridge: \(error.localizedDescription)")
         }

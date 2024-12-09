@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class FridgeViewController: UIViewController {
     var currentUser:FirebaseAuth.User?
@@ -86,6 +87,29 @@ class FridgeViewController: UIViewController {
         addItemVC.currentFridge = self.fridge
         navigationController?.pushViewController(addItemVC, animated: true)
     }
+    
+    func deleteItemFromFridge(item: Item) async {
+        let database = Firestore.firestore()
+        
+        let itemData: [String: Any] = [
+            "name": item.name,
+            "category": item.category,
+            "photo": item.photo,
+            "dateAdded": Timestamp(date: item.dateAdded),
+            "memberName": item.memberName
+        ]
+        
+        let fridgesRef = database.collection("users")
+            .document((self.currentUser?.email)!).collection("fridges")
+            .document((self.fridge?.id)!)
+        
+        do {
+            try await fridgesRef.updateData(["items": FieldValue.arrayRemove([itemData])])
+        } catch {
+            print("Error adding item to fridge: \(error.localizedDescription)")
+        }
+    }
+    
 }
 
 // TableView Delegate & DataSource
@@ -101,5 +125,18 @@ extension FridgeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = "\(item.name) - \(item.category) (Added by: \(item.memberName))"
 
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // 1. Remove the item from the data source
+            let deletedItem = fridge.items[indexPath.row]
+            
+            Task {
+                await deleteItemFromFridge(item: deletedItem)
+            }
+            
+            navigationController?.popViewController(animated: false)
+        }
     }
 }
