@@ -74,7 +74,9 @@ extension ViewController{
         let signInAction = UIAlertAction(title: "Sign In", style: .default, handler: {(_) in
             if let email = signInAlert.textFields![0].text,
                let password = signInAlert.textFields![1].text{
-                print(email, password)
+                self.signInToFirebase(email: email, password: password)
+            } else {
+                print("Please input a username and password")
             }
         })
         
@@ -103,6 +105,28 @@ extension ViewController{
     @objc func onTapOutsideAlert(){
         self.dismiss(animated: true)
     }
+    
+    
+    func signInToFirebase(email: String, password: String){
+        //MARK: can you display progress indicator here?
+        //MARK: authenticating the user...
+        Auth.auth().signIn(withEmail: email, password: password, completion: {(result, error) in
+            if error == nil{
+                //MARK: user authenticated...
+                //MARK: can you hide the progress indicator here?
+                if let uwResult = result {
+                    print("The uw result user",uwResult.user)
+                    print("The uw result credential is", uwResult.credential)
+                } else {
+                    print("User unable to be unwrapped")
+                }
+            }else{
+                //MARK: alert that no user found or password wrong...
+                print("User not found // password incorrect")
+            }
+        })
+    }
+
     
     // If the user is logged in and presses the log out button.
     @objc func onLogOutBarButtonTapped(){
