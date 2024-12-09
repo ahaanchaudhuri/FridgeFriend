@@ -32,9 +32,17 @@ class ViewController: UIViewController {
         mainScreen.tableViewFridges.dataSource = self
         mainScreen.tableViewFridges.separatorStyle = .none
         
+        mainScreen.floatingButtonAddFridge.addTarget(self, action: #selector(onAddFridgeTapped), for: .touchUpInside)
+        
         navigationController?.navigationBar.prefersLargeTitles = true
         
         view.bringSubviewToFront(mainScreen.floatingButtonAddFridge)
+    }
+    
+    @objc func onAddFridgeTapped(){
+        let fViewController = AddFridgeViewController()
+        fViewController.currentUser = self.currentUser
+        navigationController?.pushViewController(fViewController, animated: true)
     }
     
     
@@ -83,8 +91,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Configs.fridgeViewContactsID, for: indexPath) as! FridgesTableViewCell
         cell.labelName.text = fridgesList[indexPath.row].name
-        // map all the members names
-        cell.labelMembers.text = fridgesList[indexPath.row].members.map { $0.username }.joined(separator: ", ")
         return cell
     }
 }

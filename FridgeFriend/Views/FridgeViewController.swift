@@ -31,8 +31,7 @@ class FridgeViewController: UIViewController {
     // Mock Data
     private var fridge: Fridge = Fridge(
         name: "Fridge1",
-        members: [User(uid: "", username: "Alice", friends: [], fridges: []),
-                  User(uid: "", username: "Bob", friends: [], fridges: [])],
+        members: [],
         items: [
             Item(name: "Milk", category: "Dairy", photo: "", dateAdded: Date(), memberName: "Alice"),
             Item(name: "Eggs", category: "Eggs", photo: "", dateAdded: Date(), memberName: "Bob"),
