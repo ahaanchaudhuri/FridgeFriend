@@ -86,7 +86,8 @@ class ViewController: UIViewController {
                             self.fridgesList.removeAll()
                             for document in documents{
                                 do{
-                                    let Fridge = try document.data(as: Fridge.self)
+                                    var Fridge = try document.data(as: Fridge.self)
+                                    Fridge.id = document.documentID
                                     self.fridgesList.append(Fridge)
                                 }catch{
                                     print(error)
@@ -102,20 +103,19 @@ class ViewController: UIViewController {
     
     func getAllMemberNames (fridgeId: String) {
         
-        print("Entered get all members")
+        print("Entered get all members with fridge id", fridgeId)
         let fridgeRef = database.collection("fridges").document(fridgeId)
-        
-        print("Got fridge ref")
-        
+                
         fridgeRef.getDocument { (fridgeSnapshot, error) in
             if let error = error {
                 print("Error fetching fridge document: \(error)")
                 return
             }
             
+            
             guard let fridgeData = fridgeSnapshot?.data(),
                   let memberIds = fridgeData["members"] as? [String] else {
-                print("Fridge document does not exist or is missing 'members'")
+                print("Fridge document does not exist or is missing 'members'", fridgeSnapshot?.data())
                 return
             }
             
@@ -157,11 +157,15 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: Configs.fridgeViewContactsID, for: indexPath) as! FridgesTableViewCell
         cell.labelName.text = fridgesList[indexPath.row].name
         
-        if let uwFridgeID = fridgesList[indexPath.row].id{
-            getAllMemberNames(fridgeId: uwFridgeID)
-        }
- 
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let uwFridgeID = fridgesList[indexPath.row].id {
+            getAllMemberNames(fridgeId: uwFridgeID)
+        } else {
+            print("No fridge id found")
+        }
     }
 }
 

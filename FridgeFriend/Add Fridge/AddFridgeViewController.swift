@@ -52,10 +52,12 @@ class AddFridgeViewController: UIViewController {
                             .document(userEmail)
                             .collection("fridges")
             do{
-                try collectionFridges.addDocument(from: fridge, completion: {(error) in
+                let newFridge = try collectionFridges.addDocument(from: fridge, completion: {(error) in
                     if error == nil{
                         self.navigationController?.popViewController(animated: true)
-                    }})}
+                    }
+                    
+                })}
             catch{
                 print("Error adding document!")
             }
