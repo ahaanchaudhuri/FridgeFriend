@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class ViewController: UIViewController {
     
@@ -18,6 +19,8 @@ class ViewController: UIViewController {
     
     // List of fridges
     var fridgesList = [Fridge]()
+    
+    let database = Firestore.firestore()
     
     
     override func loadView() {
@@ -72,7 +75,69 @@ class ViewController: UIViewController {
                 self.mainScreen.floatingButtonAddFridge.isHidden = false
                 
                 self.setupRightBarButton(isLoggedin: true)
+                
+                
+                // MARK: Observe Firestore database to display the contacts list...
+                self.database.collection("users")
+                    .document((self.currentUser?.email)!)
+                    .collection("fridges")
+                    .addSnapshotListener(includeMetadataChanges: false, listener: {querySnapshot, error in
+                        if let documents = querySnapshot?.documents{
+                            self.fridgesList.removeAll()
+                            for document in documents{
+                                do{
+                                    let Fridge = try document.data(as: Fridge.self)
+                                    self.fridgesList.append(Fridge)
+                                }catch{
+                                    print(error)
+                                }
+                            }
+                            self.fridgesList.sort(by: {$0.name < $1.name})
+                            self.mainScreen.tableViewFridges.reloadData()
+                        }
+                    })
             }
+        }
+    }
+    
+    func getAllMemberNames (fridgeId: String) {
+        
+        print("Entered get all members")
+        let fridgeRef = database.collection("fridges").document(fridgeId)
+        
+        print("Got fridge ref")
+        
+        fridgeRef.getDocument { (fridgeSnapshot, error) in
+            if let error = error {
+                print("Error fetching fridge document: \(error)")
+                return
+            }
+            
+            guard let fridgeData = fridgeSnapshot?.data(),
+                  let memberIds = fridgeData["members"] as? [String] else {
+                print("Fridge document does not exist or is missing 'members'")
+                return
+            }
+            
+            let usersCollection = self.database.collection("users")
+            var userNames: [String] = []
+            
+            for userId in memberIds {
+                let userRef = usersCollection.document(userId)
+                userRef.getDocument { (userSnapshot, error) in
+                    if let error = error {
+                        print("Error fetching user document for \(userId): \(error)")
+                    }
+
+                    if let userData = userSnapshot?.data(), let userName = userData["username"] as? String {
+                        userNames.append(userName)
+                    } else {
+                        print("User document not found or missing 'name' for userId: \(userId)")
+                    }
+                }
+            }
+            
+            print("The members of this fridge are:", userNames)
         }
     }
     
@@ -91,6 +156,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Configs.fridgeViewContactsID, for: indexPath) as! FridgesTableViewCell
         cell.labelName.text = fridgesList[indexPath.row].name
+        
+        if let uwFridgeID = fridgesList[indexPath.row].id{
+            getAllMemberNames(fridgeId: uwFridgeID)
+        }
+ 
         return cell
     }
 }
