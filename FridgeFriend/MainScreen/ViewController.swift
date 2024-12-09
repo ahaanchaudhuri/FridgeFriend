@@ -101,17 +101,26 @@ class ViewController: UIViewController {
         }
     }
     
-    func getAllMemberNames(members: String) async {
-        print("Entered get all members", members)
-        
-        let docRef = database.collection("fridges").document(members)
+    func getAllFridges() async {
+        let fridgesRef = database.collection("users")
+            .document((self.currentUser?.email)!).collection("fridges")
         
         do {
-          let city = try await docRef.getDocument(as: Fridge.self)
-          print("City: \(city)")
+            let querySnapshot = try await fridgesRef.getDocuments()
+            var fridges: [Fridge] = []
+            
+            for document in querySnapshot.documents {
+                var fridge = try document.data(as: Fridge.self)
+                fridge.id = document.documentID // Add the document ID if needed
+                fridges.append(fridge)
+            }
+            
+            print("The final fridges list is:", fridges)
         } catch {
-          print("Error decoding city: \(error)")
+            print("Error fetching fridges: \(error.localizedDescription)")
         }
+        
+
         
     }
 
@@ -136,7 +145,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        getAllMemberNames(members: fridgesList[indexPath.row].name)
+        let fridgeName = fridgesList[indexPath.row].name
+        print("Selected fridge: \(fridgeName)")
+        
+        Task { // Start an asynchronous task
+            await getAllFridges()
+        }
     }
 }
 

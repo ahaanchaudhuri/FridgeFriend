@@ -56,8 +56,9 @@ class AddFridgeViewController: UIViewController {
                     if error == nil{
                         self.navigationController?.popViewController(animated: true)
                     }
-                    
-                })}
+                })
+                print("New fridge added with path: ", newFridge.path)
+            }
             catch{
                 print("Error adding document!")
             }
