@@ -53,7 +53,7 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         
         //MARK: handling if the Authentication state is changed (sign in, sign out, register)...
-        handleAuth = Auth.auth().addStateDidChangeListener{ auth, user in
+        handleAuth = Auth.auth().addStateDidChangeListener { auth, user in
             if user == nil{
                 // If the user is not signed in:
                 self.currentUser = nil
@@ -101,45 +101,20 @@ class ViewController: UIViewController {
         }
     }
     
-    func getAllMemberNames (fridgeId: String) {
+    func getAllMemberNames(members: String) async {
+        print("Entered get all members", members)
         
-        print("Entered get all members with fridge id", fridgeId)
-        let fridgeRef = database.collection("fridges").document(fridgeId)
-                
-        fridgeRef.getDocument { (fridgeSnapshot, error) in
-            if let error = error {
-                print("Error fetching fridge document: \(error)")
-                return
-            }
-            
-            
-            guard let fridgeData = fridgeSnapshot?.data(),
-                  let memberIds = fridgeData["members"] as? [String] else {
-                print("Fridge document does not exist or is missing 'members'", fridgeSnapshot?.data())
-                return
-            }
-            
-            let usersCollection = self.database.collection("users")
-            var userNames: [String] = []
-            
-            for userId in memberIds {
-                let userRef = usersCollection.document(userId)
-                userRef.getDocument { (userSnapshot, error) in
-                    if let error = error {
-                        print("Error fetching user document for \(userId): \(error)")
-                    }
-
-                    if let userData = userSnapshot?.data(), let userName = userData["username"] as? String {
-                        userNames.append(userName)
-                    } else {
-                        print("User document not found or missing 'name' for userId: \(userId)")
-                    }
-                }
-            }
-            
-            print("The members of this fridge are:", userNames)
+        let docRef = database.collection("fridges").document(members)
+        
+        do {
+          let city = try await docRef.getDocument(as: Fridge.self)
+          print("City: \(city)")
+        } catch {
+          print("Error decoding city: \(error)")
         }
+        
     }
+
     
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -161,11 +136,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let uwFridgeID = fridgesList[indexPath.row].id {
-            getAllMemberNames(fridgeId: uwFridgeID)
-        } else {
-            print("No fridge id found")
-        }
+        getAllMemberNames(members: fridgesList[indexPath.row].name)
     }
 }
 

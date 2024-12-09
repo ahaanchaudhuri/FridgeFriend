@@ -28,13 +28,13 @@ class AddFridgeViewController: UIViewController {
         
         if let uwFridgeName = addFridge.fridgeNameTextField.text, !uwFridgeName.isEmpty {
             // create the firestore fridge.
-            print(currentUser)
-            if let uwUserId = currentUser?.uid {
-                let newFridge = Fridge(name: uwFridgeName, members: [uwUserId], items: [])
+            print("The current user is: ",currentUser)
+            if let uwUserEmail = currentUser?.email {
+                let newFridge = Fridge(name: uwFridgeName, members: [uwUserEmail], items: [])
                 print("saving fridge to firestore", newFridge)
                 saveFridgeToFireStore(fridge: newFridge)
             } else {
-                print("Invalid user id")
+                print("Invalid user email")
             }
         } else {
             print("Add an alert to let the user know that the fridge name is invalid.")
