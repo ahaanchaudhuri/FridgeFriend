@@ -9,8 +9,8 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    var currentUser:FirebaseAuth.User?
+class AddItemViewController: UIViewController {
+    var currentUser: FirebaseAuth.User?
     var currentFridge: Fridge!
     
     // UI Components
@@ -37,13 +37,6 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         return picker
     }()
 
-    private let photoButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Add Photo", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-
     private let saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Save", for: .normal)
@@ -67,11 +60,9 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         view.addSubview(nameTextField)
         view.addSubview(categoryTextField)
         view.addSubview(datePicker)
-        view.addSubview(photoButton)
         view.addSubview(saveButton)
 
         // Add Targets
-        photoButton.addTarget(self, action: #selector(photoButtonTapped), for: .touchUpInside)
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
 
         // Set Constraints
@@ -92,26 +83,11 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
             datePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             datePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
 
-            photoButton.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 16),
-            photoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-
-            saveButton.topAnchor.constraint(equalTo: photoButton.bottomAnchor, constant: 32),
+            saveButton.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 32),
             saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             saveButton.heightAnchor.constraint(equalToConstant: 50)
         ])
-    }
-
-    @objc private func photoButtonTapped() {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
-    }
-
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        dismiss(animated: true, completion: nil)
-        // Handle the selected image if needed
     }
 
     @objc private func saveButtonTapped() {
@@ -119,18 +95,15 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         let category = categoryTextField.text ?? ""
         let dateAdded = datePicker.date
         
-        let newItem : Item = Item(name: name, category: category, photo: "", dateAdded: dateAdded, memberName: ((self.currentUser?.email)!))
+        let newItem: Item = Item(name: name, category: category, photo: "", dateAdded: dateAdded, memberName: ((self.currentUser?.email)!))
         
         Task {
             await addItemToFridge(item: newItem)
         }
 
-
         print("Item saved: \(name), \(category), \(dateAdded)")
         navigationController?.popViewController(animated: true)
-        navigationController?.popViewController(animated: true)
     }
-    
     
     func addItemToFridge(item: Item) async {
         let database = Firestore.firestore()
