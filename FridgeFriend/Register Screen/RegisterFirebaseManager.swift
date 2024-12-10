@@ -38,7 +38,7 @@ extension RegisterViewController{
     func createUserProfileIfNeeded() {
         guard let currentUser = Auth.auth().currentUser else { return }
         
-        let userRef = Firestore.firestore().collection("users").document(currentUser.uid)
+        let userRef = Firestore.firestore().collection("user-list").document((currentUser.email)!)
         
         userRef.getDocument { (document, error) in
             if let error = error {

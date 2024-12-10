@@ -7,16 +7,14 @@
 
 // Data Model for User
 struct User: Codable {
+    let email: String
     let uid: String
-    let username: String
-    var friends: [User] // List of friends (could be User IDs if needed)
-    var fridges: [Fridge] // List of fridges the user belongs to
+    let name: String
     
     // Init for the user - there is no password being stored, just a user ID.
-    init(uid: String, username: String, friends: [User], fridges: [Fridge]) {
+    init( email: String, uid: String, name: String) {
         self.uid = uid
-        self.username = username
-        self.friends = friends
-        self.fridges = fridges
+        self.name = name
+        self.email = email
     }
 }

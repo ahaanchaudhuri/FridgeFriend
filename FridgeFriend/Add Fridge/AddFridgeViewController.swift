@@ -20,7 +20,7 @@ class AddFridgeViewController: UIViewController {
     let database = Firestore.firestore()
     
     // the list of users for the picker
-    var users: [User]!
+    var users: [User] = []
     // the selected user from the pickers
     var selectedUser: User!
     
@@ -76,22 +76,16 @@ class AddFridgeViewController: UIViewController {
     }
     
     func getAllUsers() async {
-        print("Entered get all users")
         // have to figure out how to get all the users
-        let usersRef = database.collection("users")
+        let usersRef = database.collection("user-list")
         
         do {
             let querySnapshot = try await usersRef.getDocuments()
-            
-            print("The query snapshot is query", querySnapshot.query)
-            print("The query snapshot is empty", querySnapshot.isEmpty)
-            
+                        
             for document in querySnapshot.documents {
                 let newUser: User = try document.data(as: User.self)
                 users.append(newUser)
             }
-            
-            print("The final users list is:", users)
         } catch {
             print("Error fetching users: \(error.localizedDescription)")
         }
