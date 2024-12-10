@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseFirestore
 
 extension RegisterViewController{
     
@@ -33,6 +34,36 @@ extension RegisterViewController{
         }
     }
     
+    
+    func createUserProfileIfNeeded() {
+        guard let currentUser = Auth.auth().currentUser else { return }
+        
+        let userRef = Firestore.firestore().collection("users").document(currentUser.uid)
+        
+        userRef.getDocument { (document, error) in
+            if let error = error {
+                print("Error checking user profile: \(error)")
+            } else if let document = document, document.exists {
+                print("User profile already exists")
+            } else {
+                // Create user profile in Firestore
+                let userData: [String: Any] = [
+                    "uid": currentUser.uid,
+                    "name": currentUser.displayName ?? "Anonymous",
+                    "email": currentUser.email ?? "",
+                ]
+                
+                userRef.setData(userData) { error in
+                    if let error = error {
+                        print("Error creating user profile: \(error)")
+                    } else {
+                        print("User profile created successfully")
+                    }
+                }
+            }
+        }
+    }
+    
     // We set the name of the user after we create the account...
     func setNameOfTheUserInFirebaseAuth(name: String){
         let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
@@ -40,6 +71,7 @@ extension RegisterViewController{
         changeRequest?.commitChanges(completion: {(error) in
             if error == nil{
                 //MARK: the profile update is successful...
+                self.createUserProfileIfNeeded()
                 self.navigationController?.popViewController(animated: true)
             }else{
                 //MARK: there was an error updating the profile...

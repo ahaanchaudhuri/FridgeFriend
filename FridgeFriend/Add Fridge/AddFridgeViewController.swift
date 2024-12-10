@@ -10,8 +10,19 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class AddFridgeViewController: UIViewController {
+
+    // setting up the view
     let addFridge = AddFridgeView()
+    // user authentication
     var currentUser:FirebaseAuth.User?
+    
+    // firestore database
+    let database = Firestore.firestore()
+    
+    // the list of users for the picker
+    var users: [User]!
+    // the selected user from the pickers
+    var selectedUser: User!
     
     override func loadView() {
         view = addFridge
@@ -21,17 +32,19 @@ class AddFridgeViewController: UIViewController {
         super.viewDidLoad()
         
         addFridge.submitButton.addTarget(self, action: #selector(onSubmitButtonTapped), for: .touchUpInside)
+        
+        Task {
+            await getAllUsers()
+        }
     }
-    
+        
     // when the submit button is tapped.
     @objc func onSubmitButtonTapped() {
         
         if let uwFridgeName = addFridge.fridgeNameTextField.text, !uwFridgeName.isEmpty {
             // create the firestore fridge.
-            print("The current user is: ",currentUser)
             if let uwUserEmail = currentUser?.email {
                 let newFridge = Fridge(name: uwFridgeName, members: [uwUserEmail], items: [])
-                print("saving fridge to firestore", newFridge)
                 saveFridgeToFireStore(fridge: newFridge)
             } else {
                 print("Invalid user email")
@@ -41,10 +54,7 @@ class AddFridgeViewController: UIViewController {
         }
         
     }
-    
-    
-    let database = Firestore.firestore()
-    
+        
     func saveFridgeToFireStore(fridge: Fridge){
         if let userEmail = currentUser!.email{
             let collectionFridges = database
@@ -64,4 +74,27 @@ class AddFridgeViewController: UIViewController {
             }
         }
     }
+    
+    func getAllUsers() async {
+        print("Entered get all users")
+        // have to figure out how to get all the users
+        let usersRef = database.collection("users")
+        
+        do {
+            let querySnapshot = try await usersRef.getDocuments()
+            
+            print("The query snapshot is query", querySnapshot.query)
+            print("The query snapshot is empty", querySnapshot.isEmpty)
+            
+            for document in querySnapshot.documents {
+                let newUser: User = try document.data(as: User.self)
+                users.append(newUser)
+            }
+            
+            print("The final users list is:", users)
+        } catch {
+            print("Error fetching users: \(error.localizedDescription)")
+        }
+    }
+    
 }
