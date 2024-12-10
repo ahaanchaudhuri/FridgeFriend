@@ -20,7 +20,6 @@ class FridgesTableViewCell: UITableViewCell {
         setupWrapperCellView()
         setupLabelName()
         setupLabelMembers()
-        
         initConstraints()
     }
     
